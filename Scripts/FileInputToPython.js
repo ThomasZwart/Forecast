@@ -9,6 +9,9 @@
     var error = false;
     var chunking = false;
 
+
+
+
     // Get an array of files from the select file input button
     $files.on("input",
         function () {
@@ -115,7 +118,8 @@
             console.log("Result: ", result);
             console.log("Chunks:", chunks);
             // Send the entire array to a python file on the server who handles the data analysis and recieve the data back from that same file.
-            ajaxArrayToPython(result);
+            //ajaxArrayToPython(result);
+            plotData(result);
             // location.reload();
         }
     }
@@ -168,6 +172,56 @@
     }
 });
 
+function plotData(array) {
+    console.log(array)
+    x2 = [];
+    x3 = [];
+    y2 = [];
+
+    for (var i = 0; i < array.length; i++) {
+        x2.push(array[i][0]);
+        x3.push(array[i][1]);
+        y2.push(array[i][3]);
+    }
+
+    var width = $("#chart").width();
+    var height = $("#chart").height();
+
+    var data = [{
+        x: x2,
+        y: y2,
+        mode: 'markers',
+        type: 'scatter'
+    }, {
+            x: x3,
+            y: y2,
+            mode: 'markers',
+            type: 'scatter'
+        }];
+    var layout = {
+        showlegend: false,
+        type: 'scatter',
+        autosize: true,
+        width: width,
+        height: height,
+        dragmode: 'pan',
+        margin: {
+            l: 30,
+            r: 0,
+            b: 30,
+            t: 20,
+            pad: 10
+        }
+    };
+
+    Plotly.newPlot('chart2', data, layout, {
+        displaylogo: false, displayModeBar: false, scrollZoom: true, modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'resetScale2d', 'autoScale2d', 'zoomOut2d', 'zoomIn2d', 'lasso2d', 'select2d', 'sendDataToCloud', 'zoom2d']
+    });
+
+    Plotly.newPlot('chart', data, layout, {
+        displaylogo: false, displayModeBar: false, scrollZoom: true, modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'resetScale2d', 'autoScale2d', 'zoomOut2d', 'zoomIn2d', 'lasso2d', 'select2d', 'sendDataToCloud', 'zoom2d']});
+};
+
 // Sends the data in an array to a external python script
 function ajaxArrayToPython(array) {
     // temp
@@ -191,3 +245,5 @@ function ajaxArrayToPython(array) {
         }
     });
 }
+
+
