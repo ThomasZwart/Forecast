@@ -55,7 +55,7 @@ namespace Forecastsite.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Auth(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -134,10 +134,16 @@ namespace Forecastsite.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(PreRegisterViewModel model)
         {
             return View();
         }
@@ -147,7 +153,7 @@ namespace Forecastsite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> RegisterUser(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -167,9 +173,9 @@ namespace Forecastsite.Controllers
                 }
                 AddErrors(result);
             }
-
+            return RedirectToAction("Index", "Forecast");
             // If we got this far, something failed, redisplay form
-            return View(model);
+          //  return View(model);
         }
 
         //

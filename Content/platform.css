@@ -1,0 +1,76 @@
+﻿/* Platform */
+
+#files {
+    display: none;
+}
+
+#fileLabel {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#read-file {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+.forecast-left-tools {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    align-content: center;
+    padding: 0;
+}
+
+.forecast-page {
+    width: 80%;
+    height: 100vh;
+    position: relative;
+    padding: 0;
+    background-color: #3d496e;
+    margin-bottom: 20px;
+    border: solid black 2px;
+    border-radius: 3px;
+}
+
+.platform {
+    height: 100vh;
+    position: relative;
+    padding: 0;
+    background-color: #f7ffff;
+}
+
+.analyse-screen {
+    height: 100%;
+    padding: 0;
+}
+
+#chart {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 47%;
+    outline: 1px solid black;
+    display: inline-block;
+    height: 200px;
+}
+
+#chart2 {
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 47%;
+    outline: 1px solid black;
+    height: 200px;
+}
+
+
+.navbar-platform {
+    background: #d2f5fa;
+    position: static;
+    border-bottom: none;
+    box-shadow: none;
+}
